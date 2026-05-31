@@ -222,6 +222,8 @@ A single peering location (e.g., one carrier hotel in one metro) is a **single f
 
 Docs: [Designing for HA with ExpressRoute](https://learn.microsoft.com/azure/expressroute/designing-for-high-availability-with-expressroute) · [Designing for DR](https://learn.microsoft.com/azure/expressroute/designing-for-disaster-recovery-with-expressroute-privatepeering)
 
+> **💡 If you can't get two distinct peering locations — use ExpressRoute Metro.** [ExpressRoute Metro](https://learn.microsoft.com/azure/expressroute/metro) is a circuit type (available in select metros today — e.g., Amsterdam Metro, Singapore Metro, Zurich Metro, Frankfurt Metro, Los Angeles Metro, etc.) where a **single ExpressRoute circuit terminates into two physically separate peering locations within the same metro area**. The two BGP sessions land at **different buildings** instead of both terminating in a single carrier hotel — so you get facility-level redundancy out of one circuit. It's the best of both worlds when budget, real-estate, or carrier reach only allows one circuit but you still want to survive a single-facility failure. Check the [list of Metro locations](https://learn.microsoft.com/azure/expressroute/metro) and consider it as a stepping stone toward (or a substitute for) a fully diverse two-circuit design.
+
 ### Bow-tie — one VNet, two circuits
 
 For VNets that **must survive a peering-location failure**, connect the **same VNet (or vHub) to both circuits**. Then if peering POP #1 goes dark, the VNet is still reachable via circuit #2.
@@ -309,6 +311,7 @@ az monitor metrics alert create \
 - [Configure BFD on ExpressRoute](https://learn.microsoft.com/azure/expressroute/expressroute-bfd)
 - [Designing for high availability with ExpressRoute](https://learn.microsoft.com/azure/expressroute/designing-for-high-availability-with-expressroute)
 - [Designing for disaster recovery (ER private peering)](https://learn.microsoft.com/azure/expressroute/designing-for-disaster-recovery-with-expressroute-privatepeering)
+- [ExpressRoute Metro (split BGP peers across two facilities in one metro)](https://learn.microsoft.com/azure/expressroute/metro)
 - [ExpressRoute FastPath](https://learn.microsoft.com/azure/expressroute/about-fastpath)
 - [ExpressRoute Direct + MACsec](https://learn.microsoft.com/azure/expressroute/expressroute-howto-macsec)
 - [ExpressRoute limits](https://learn.microsoft.com/azure/azure-resource-manager/management/azure-subscription-service-limits#azure-expressroute-limits)
