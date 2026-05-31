@@ -36,7 +36,7 @@ Three classes of problems consistently bite teams that under-invest in ExR monit
 
 1. **Silent partial failure** — one of the two MSEE BGP peers goes down. The circuit looks "up" because the other peer is still forwarding, but you've lost half your redundancy and don't know it.
 2. **Bandwidth surprise** — a backup job, replication burst, or a new chatty workload pushes the circuit toward its bandwidth ceiling. Provider rate-limiting kicks in, applications start dropping, and nobody knows why.
-3. **Maintenance failover that doesn't fail over** — Microsoft prepends the MSEE under maintenance, but the customer has **local preference** configured on-prem, which beats AS-PATH in BGP best-path selection. Traffic stays pinned to the MSEE being worked on. Outage.
+3. **Maintenance failover that doesn't fail over** — Microsoft prepends the MSEE under maintenance, but the customer has **local preference** configured on-prem, which beats AS-PATH in BGP best-path selection. Traffic stays pinned to the MSEE being worked on. Ouch!
 
 Everything in this guide is aimed at avoiding those three scenarios.
 
